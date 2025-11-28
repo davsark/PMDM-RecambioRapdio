@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Barra superior con botón de volver -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#99c5f7"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/outline_arrow_back_ios_new_24"
+            android:contentDescription="Volver"
+            app:tint="@color/texto" />
+
+        <TextView
+            android:id="@+id/tvToolbarTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Detalle del Producto"
+            android:textSize="20sp"
+            android:textColor="@color/texto"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+
+    <!-- ScrollView para contenido scrollable -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Imagen del producto -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:id="@+id/imgProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Imagen del producto"
+                    tools:src="@drawable/turbo" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- Badge de categoría -->
+            <TextView
+                android:id="@+id/tvCategoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@color/azulR"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:text="MOTOR"
+                tools:text="MOTOR" />
+
+            <!-- Nombre del producto -->
+            <TextView
+                android:id="@+id/tvNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="24sp"
+                android:textColor="@color/texto"
+                android:textStyle="bold"
+                android:text="Turbo K03"
+                tools:text="Turbo K03" />
+
+            <!-- Descripción corta -->
+            <TextView
+                android:id="@+id/tvDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textSize="16sp"
+                android:textColor="@android:color/darker_gray"
+                android:text="Repuesto original para motores 1.8T"
+                tools:text="Repuesto original para motores 1.8T" />
+
+            <!-- Precio -->
+            <TextView
+                android:id="@+id/tvPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textSize="32sp"
+                android:textColor="@color/azulR"
+                android:textStyle="bold"
+                android:text="250.00 €"
+                tools:text="250.00 €" />
+
+            <!-- Separador -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/azulClaro" />
+
+            <!-- Título de descripción larga -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Descripción Detallada"
+                android:textSize="18sp"
+                android:textColor="@color/texto"
+                android:textStyle="bold" />
+
+            <!-- Descripción larga -->
+            <TextView
+                android:id="@+id/tvDescripcionLarga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:lineSpacingExtra="4dp"
+                android:text="Turbocompresor de alto rendimiento K03..."
+                tools:text="Turbocompresor de alto rendimiento K03 diseñado específicamente para motores 1.8T. Fabricado con materiales de primera calidad." />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Barra inferior con botón de añadir al carrito -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:elevation="8dp"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Botón añadir al carrito -->
+        <Button
+            android:id="@+id/btnAgregarCarrito"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Añadir al Carrito"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/azulR"
+            android:textColor="@color/white"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/corazon"
+            app:iconGravity="textStart"
+            app:iconTint="@color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

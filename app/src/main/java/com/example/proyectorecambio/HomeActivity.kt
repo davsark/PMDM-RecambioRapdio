@@ -198,9 +198,10 @@ class HomeActivity : AppCompatActivity() {
             adapter = ProductoAdapter(
                 productos = productosCatalogo,
                 onProductoClick = { producto ->
-                    // Navegar a la pantalla de detalle
-                    val intent = Intent(this@HomeActivity, ProductDetailActivity::class.java)
-                    intent.putExtra(ProductDetailActivity.EXTRA_PRODUCTO, producto)
+                    // Navegar a la pantalla de detalle (usando Parcelable)
+                    val intent = Intent(this@HomeActivity, ProductDetailActivity::class.java).apply {
+                        putExtra(ProductDetailActivity.EXTRA_PRODUCTO, producto)
+                    }
                     startActivity(intent)
                 },
                 onFavoritoClick = { producto ->
@@ -260,8 +261,9 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerViewCatalogo?.adapter = ProductoAdapter(
             productos = productosFiltrados,
             onProductoClick = { producto ->
-                val intent = Intent(this, ProductDetailActivity::class.java)
-                intent.putExtra(ProductDetailActivity.EXTRA_PRODUCTO, producto)
+                val intent = Intent(this, ProductDetailActivity::class.java).apply {
+                    putExtra(ProductDetailActivity.EXTRA_PRODUCTO, producto)
+                }
                 startActivity(intent)
             },
             onFavoritoClick = { producto ->

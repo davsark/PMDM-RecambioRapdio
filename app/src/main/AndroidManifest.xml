@@ -28,10 +28,18 @@
         android:name=".LoginActivity"
         android:exported="false"
         android:windowSoftInputMode="adjustResize"/>
-        <!-- Pantalla de Home (se abre desde MainActivity) -->
+
+        <!-- Pantalla de Home (se abre desde LoginActivity) -->
     <activity
         android:name=".HomeActivity"
         android:exported="false"
+        android:screenOrientation="portrait"/>
+
+        <!-- Pantalla de Detalle de Producto (se abre desde HomeActivity) -->
+    <activity
+        android:name=".ProductDetailActivity"
+        android:exported="false"
+        android:parentActivityName=".HomeActivity"
         android:screenOrientation="portrait"/>
     </application>
 
