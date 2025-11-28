@@ -1,9 +1,5 @@
 package com.example.proyectorecambio
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
-
-@Parcelize
 data class Producto(
     val nombre: String,
     val descripcion: String,
@@ -12,7 +8,7 @@ data class Producto(
     val categoria: String,
     var cantidad: Int = 0,
     val imagen: Int = R.drawable.turbo
-) : Parcelable {
+) : java.io.Serializable {
     val precioFormateado: String
         get() = "$precio €"
 
