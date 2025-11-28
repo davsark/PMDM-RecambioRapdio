@@ -1,19 +1,42 @@
 package com.example.proyectorecambio
 
+import android.app.Activity
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectorecambio.databinding.ActivityHomeBinding
 import android.content.Intent
+
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private val productosEnCarrito = mutableListOf<Producto>()
     private lateinit var productosCatalogo: List<Producto>
+
+    // ActivityResultLauncher para recibir el resultado de ProductDetailActivity
+    private val productDetailLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // El producto fue añadido al carrito desde ProductDetailActivity
+            val productoNombre = result.data?.getStringExtra(
+                ProductDetailActivity.RESULT_PRODUCTO_NOMBRE
+            )
+
+            productoNombre?.let { nombre ->
+                // Buscar el producto en el catálogo y añadirlo al carrito
+                val producto = productosCatalogo.find { it.nombre == nombre }
+                producto?.let {
+                    agregarAlCarrito(it)
+                }
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -198,15 +221,17 @@ class HomeActivity : AppCompatActivity() {
             adapter = ProductoAdapter(
                 productos = productosCatalogo,
                 onProductoClick = { producto ->
-                    // Navegar a la pantalla de detalle
-                    val intent = Intent(this@HomeActivity, ProductDetailActivity::class.java)
-                    intent.putExtra(ProductDetailActivity.EXTRA_PRODUCTO, producto)
-                    startActivity(intent)
+                    // Navegar a ProductDetailActivity usando Activity Result API
+                    val intent = Intent(this@HomeActivity, ProductDetailActivity::class.java).apply {
+                        putExtra(ProductDetailActivity.EXTRA_PRODUCTO, producto)
+                    }
+                    productDetailLauncher.launch(intent)
                 },
                 onFavoritoClick = { producto ->
                     agregarAlCarrito(producto)
                 }
             )
+        }
 
         // ==================================================================
         // CONFIGURAR SPINNER/FILTRO
@@ -260,14 +285,17 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerViewCatalogo?.adapter = ProductoAdapter(
             productos = productosFiltrados,
             onProductoClick = { producto ->
-                val intent = Intent(this, ProductDetailActivity::class.java)
-                intent.putExtra(ProductDetailActivity.EXTRA_PRODUCTO, producto)
-                startActivity(intent)
+                // Navegar a ProductDetailActivity usando Activity Result API
+                val intent = Intent(this, ProductDetailActivity::class.java).apply {
+                    putExtra(ProductDetailActivity.EXTRA_PRODUCTO, producto)
+                }
+                productDetailLauncher.launch(intent)
             },
             onFavoritoClick = { producto ->
                 agregarAlCarrito(producto)
             }
         )
+    }
 
     // ==================================================================
     // AGREGAR AL CARRITO
