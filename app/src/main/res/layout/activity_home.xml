@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Rectángulo superior con fondo azul -->
+    <LinearLayout
+        android:id="@+id/contenedorSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#99c5f7"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Spinner personalizado -->
+        <LinearLayout
+            android:id="@+id/contenedorFiltroClickable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/tvFiltro"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Filtrar Repuestos"
+                android:textSize="16sp"
+                android:textColor="@color/texto"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/outline_arrow_back_ios_new_24"
+                android:rotation="270"
+                app:tint="@color/texto"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- RecyclerView HORIZONTAL para las cards -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCatalogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contenedorSpinner"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
+
+    <!-- Separador después del catálogo -->
+    <View
+        android:id="@+id/separador"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/recyclerViewCatalogo"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
+
+    <!-- Recuadro del TOTAL FINAL (fijo abajo) -->
+    <LinearLayout
+        android:id="@+id/contenedorTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="#faf4bb"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp">
+
+        <!-- Línea separadora -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#f6db52"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Fila con TOTAL FINAL y precio -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TOTAL FINAL:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/texto"/>
+
+            <TextView
+                android:id="@+id/tvTotalFinal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00 €"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/texto"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Contenedor con fondo para el carrito -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/separador"
+        android:layout_above="@id/contenedorTotal"
+        android:orientation="vertical"
+        android:background="#faf4bb"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp">
+
+        <!-- Título de la lista de productos -->
+        <TextView
+            android:id="@+id/tvTituloCarrito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LISTA DE PRODUCTOS"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- Línea separadora debajo del título -->
+        <View
+            android:id="@+id/lineaSeparadora"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#f6db52"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+
+        <!-- ScrollView para el carrito -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="4dp">
+
+            <LinearLayout
+                android:id="@+id/listContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</RelativeLayout>

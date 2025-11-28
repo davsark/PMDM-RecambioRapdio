@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ScrollView (contenedor con desplazamiento vertical)
+- Permite hacer scroll si el contenido no cabe en pantalla.
+- Restricción: solo puede tener un hijo directo (suele ser otro ViewGroup).
+!importante añadir id para llamar desde MainActivity.kt¡
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loginscreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azulR">
+    <!--
+       LinearLayout (contenedor vertical centrado)
+       android:layout_width="match_parent" → Ocupa todo el ancho del padre.
+       android:layout_height="wrap_content" → La altura se ajusta al contenido de los hijos.
+       android:orientation="vertical" → Apila hijos uno debajo del otro.
+       android:gravity="center_horizontal" → Centra los hijos horizontalmente.
+       android:padding="24dp" → Espaciado interno cómodo alrededor del contenido.
+       -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp"
+        android:layout_centerVertical="true">
+        <!--
+      ImageView del logo
+      - Muestra tu PNG de /res/drawable/imageViewLogo.png.
+      - centerInside para centrar sin recortar + adjustViewBounds se ajusta manteniendo la proporcion
+      -->
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/logo_letra_sin_fondo"
+            android:contentDescription="@string/logo_de_la_app"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="-40dp"
+            />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inicio de sesión"
+            android:textSize="26dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/texto"/>
+        <!--
+              Campo de usuario o email
+              - inputType guía el teclado y validación básica de formato email si lo usas así.
+              -->
+        <EditText
+            android:id="@+id/etUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Usuario o email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/texto"
+            android:drawableLeft="@drawable/user"
+            android:paddingLeft="30dp"
+            android:drawablePadding="10dp"
+            android:background="@drawable/edit_text_rounded"/>
+        <!--
+       Campo de contraseña
+       - textPassword oculta los caracteres.
+       -->
+
+        <!--
+               Texto de error
+               - Muestra el motivo cuando la contraseña no cumple las reglas.
+               -->
+        <EditText
+            android:id="@+id/etPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_rounded"
+            android:layout_marginTop="12dp"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textColor="@color/texto"
+            android:drawableLeft="@drawable/lock"
+            android:paddingLeft="30dp"
+            android:drawablePadding="10dp"/>
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#B00020"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"
+            />
+        <!--
+     Botón de Login
+     - Navega a LoginActivity al pulsar.
+     "match_parent" Botón ancho completo
+     -->
+        <Button
+            android:id="@+id/buttonLogin"
+            android:textSize="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Iniciar Sesión"
+            android:enabled="false"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/texto"
+            android:backgroundTint="@color/amarillo"
+         />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="O"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/texto"
+
+            />
+        <!--
+   Botón de Registrarse
+   - Por ahora muestra Toast “Opción no válida”.
+   -->
+        <Button
+            android:id="@+id/registrarse"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:text="Registrarse"
+            android:textSize="20dp"
+            android:textColor="@color/texto"
+            android:backgroundTint="@color/amarillo"/>
+
+
+
+    </LinearLayout>
+</RelativeLayout>

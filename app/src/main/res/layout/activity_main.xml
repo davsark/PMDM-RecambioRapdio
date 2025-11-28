@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+        <!--
+        ScrollView (contenedor con desplazamiento vertical)
+        - Permite hacer scroll si el contenido no cabe en pantalla.
+        - Restricción: solo puede tener un hijo directo (suele ser otro ViewGroup).
+        !importante añadir id para llamar desde MainActivity.kt¡
+        -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azulR"
+    >
+    <!--
+       LinearLayout (contenedor vertical centrado)
+       android:layout_width="match_parent" → Ocupa todo el ancho del padre.
+       android:layout_height="wrap_content" → La altura se ajusta al contenido de los hijos.
+       android:orientation="vertical" → Apila hijos uno debajo del otro.
+       android:gravity="center_horizontal" → Centra los hijos horizontalmente.
+       android:padding="24dp" → Espaciado interno cómodo alrededor del contenido.
+       -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
+        <!--
+      ImageView del logo
+      - Muestra tu PNG de /res/drawable/imageViewLogo.png.
+      - centerInside para centrar sin recortar + adjustViewBounds se ajusta manteniendo la proporcion
+      -->
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="15dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/logo_de_la_app"
+            android:scaleType="centerInside"
+            android:src="@drawable/logo_letra_sin_fondo" />
+        <!--
+     Botón de Login
+     - Navega a LoginActivity al pulsar.
+     "match_parent" Botón ancho completo
+     -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/amarillo"
+                android:text="Iniciar Sesión"
+                android:textColor="@color/texto"
+                android:textSize="18dp" />
+            <!--
+   Botón de Registrarse
+   - Por ahora muestra Toast “Opción no válida”.
+   -->
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/amarillo"
+                android:text="Registrarse"
+                android:textColor="@color/texto"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

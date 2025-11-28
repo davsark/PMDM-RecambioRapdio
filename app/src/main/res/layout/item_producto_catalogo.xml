@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="200dp"
+    android:layout_height="320dp"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#faf4bb"
+        android:paddingBottom="8dp">
+
+        <ImageView
+            android:id="@+id/imagen_card"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="fitCenter"
+            android:background="#faf4bb"
+            android:src="@drawable/turbo" />
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imagen_card"
+            android:layout_alignParentStart="true"
+            android:background="#faf4bb"
+            android:text="Titulo"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/texto"
+            android:textSize="20sp"
+            android:padding="4dp"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titulo"
+            android:text="Descripcion Del producto"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="@color/texto"
+            android:padding="4dp"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+
+        <ImageView
+            android:id="@+id/icono_corazon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/corazon"
+            android:padding="8dp"
+            app:tint="#7176D9"/>
+
+        <TextView
+            android:id="@+id/precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@id/icono_corazon"
+            android:layout_alignTop="@id/icono_corazon"
+            android:layout_alignBottom="@id/icono_corazon"
+            android:gravity="center_vertical"
+            android:text="120 €"
+            android:textSize="20sp"
+            android:textColor="#af7c22"
+            android:textStyle="bold"
+            android:background="#faf4bb"
+            android:paddingStart="15dp"
+            android:paddingEnd="4dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
